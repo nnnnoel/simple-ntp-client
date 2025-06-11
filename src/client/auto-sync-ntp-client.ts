@@ -1,4 +1,4 @@
-import {getNTPTime} from "../utils/date";
+import {getNTPDate} from "../utils/date";
 
 const INTERVAL_PERIOD = 1_000;
 export class AutoSyncNTPClient {
@@ -31,7 +31,7 @@ export class AutoSyncNTPClient {
 
     public async syncTime() {
         try {
-            this.#ntpNow = new Date(await getNTPTime(this.ntpServerHost, this.ntpServerPort));
+            this.#ntpNow = await getNTPDate(this.ntpServerHost, this.ntpServerPort);
             this.#lastUpdateTime = new Date();
         } catch {
             // do nothing
